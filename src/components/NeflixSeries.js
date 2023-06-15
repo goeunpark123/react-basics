@@ -1,7 +1,8 @@
 import React from "react";
 import "./NeflixSeries.css";
 
-const NetflixSeries = () => {
+const NetflixSeries = (props) => {
+  console.log(props.titles);
   return (
     <ul className="list">
       <li>Never Have I ever</li>
