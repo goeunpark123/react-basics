@@ -1,4 +1,5 @@
-import NetflixSeries from "./components/NeflixSeries";
+import NetflixSeries from "./components/NetflixSeries/NeflixSeries";
+import NewShow from "./components/NewShow/NewShow";
 import "./App.css";
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
   return (
     <div>
       <h2 className="title">Netflix Series</h2>
+      <NewShow />
       <NetflixSeries titles={neflixSeries} />
     </div>
   );

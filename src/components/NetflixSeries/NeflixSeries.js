@@ -5,9 +5,9 @@ const NetflixSeries = (props) => {
   console.log(props.titles);
   return (
     <ul className="list">
-      <li>Never Have I ever</li>
-      <li>Ginny & Georgia</li>
-      <li>Beef</li>
+      {props.titles.map((title) => {
+        return <li key={title.id}>{title.text}</li>;
+      })}
     </ul>
   );
 };
