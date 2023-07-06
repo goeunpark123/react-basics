@@ -1,5 +1,5 @@
 import React from "react";
-import "./NeflixSeries.css";
+import "./NetflixSeries.css";
 
 const NetflixSeries = (props) => {
   console.log(props.titles);

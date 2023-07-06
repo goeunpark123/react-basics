@@ -1,7 +1,7 @@
 import React from "react";
 import "./NewShow.css";
 
-const NewShow = () => {
+const NewShow = (props) => {
   const addShowHandler = (event) => {
     event.preventDefault();
 
@@ -11,7 +11,9 @@ const NewShow = () => {
     };
 
     console.log(newShow);
+    props.onAddShow(newShow);
   };
+
   return (
     <form className="new-show" onSubmit={addShowHandler}>
       <input type="text" />
