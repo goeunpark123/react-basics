@@ -12,7 +12,10 @@ const App = () => {
   ]);
 
   const addNewShowHandler = (newShow) => {
-    setNetflixSeries(netflixSeries.concat(newShow));
+    //이전 상태의 데이터에 의존하지 않는 경우에 사용(업데이트 지연 가능성)
+    //setNetflixSeries(netflixSeries.concat(newShow));
+
+    setNetflixSeries((prevNetflixSeries) => prevNetflixSeries.concat(newShow));
   };
 
   return (
