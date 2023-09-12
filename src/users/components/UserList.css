@@ -1,0 +1,9 @@
+.users-list {
+  margin: 1pc;
+  padding: 1pc;
+  width: 90%;
+  max-width: fit-content;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

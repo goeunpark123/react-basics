@@ -1,29 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom/cjs/react-router-dom.min";
 
-import NetflixSeries from "./components/NetflixSeries/NetflixSeries";
-import NewShow from "./components/NewShow/NewShow";
-import "./App.css";
+import User from "./users/pages/Users";
+import NewPlace from "./places/pages/NewPlace";
+import UserPlaces from "./places/pages/UserPlaces";
+import MainNavigation from "./shared/components/Navigation/MainNavigation";
 
 const App = () => {
-  const [netflixSeries, setNetflixSeries] = useState([
-    { id: "1st", text: "Never Have I ever" },
-    { id: "2nd", text: "Ginny & Georgia" },
-    { id: "3rd", text: "Beef" },
-  ]);
-
-  const addNewShowHandler = (newShow) => {
-    //이전 상태의 데이터에 의존하지 않는 경우에 사용(업데이트 지연 가능성)
-    //setNetflixSeries(netflixSeries.concat(newShow));
-
-    setNetflixSeries((prevNetflixSeries) => prevNetflixSeries.concat(newShow));
-  };
-
   return (
-    <div>
-      <h2 className="title">Netflix Series</h2>
-      <NewShow onAddShow={addNewShowHandler} />
-      <NetflixSeries titles={netflixSeries} />
-    </div>
+    <Router>
+      <MainNavigation />
+      <main>
+        <Switch>
+          <Route path="/" exact>
+            <User />
+          </Route>
+          <Route path="/:userId/places" exact>
+            <UserPlaces />
+          </Route>
+          <Route path="/places/new" exact>
+            <NewPlace />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+      </main>
+    </Router>
   );
 };
 

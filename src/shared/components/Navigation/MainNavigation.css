@@ -1,0 +1,46 @@
+.main-navigation-menu-btn {
+  margin-right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  background: transparent;
+}
+
+.main-navigation-menu-btn span {
+  width: 2.5rem;
+  height: 2.5px;
+  display: block;
+  background: white;
+}
+
+.main-navigation-title {
+  color: white;
+}
+
+.main-navigation-title a {
+  text-decoration: none;
+  color: white;
+}
+
+.main-navigation-header-nav {
+  margin-right: 1rem;
+  display: none;
+}
+
+.main-navigation-drawer-nav {
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .main-navigation-menu-btn {
+    display: none;
+  }
+
+  .main-navigation-header-nav {
+    display: block;
+  }
+}
