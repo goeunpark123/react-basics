@@ -12,6 +12,7 @@
 
 .nav-links li {
   margin: 1rem;
+  font-weight: bold;
 }
 
 .nav-links a {
@@ -27,6 +28,7 @@
   background: #ffbf00;
   border-color: #292929;
   color: #292929;
+  font-weight: bold;
 }
 
 .nav-links button {
