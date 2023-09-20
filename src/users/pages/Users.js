@@ -3,6 +3,12 @@ import React from "react";
 import UserList from "../components/UserList";
 
 const USERS = [
+  // {
+  //   id: "u1",
+  //   name: "Alex clarmont-diaz",
+  //   image: "https://i.ibb.co/HT4MXF8/alex.png",
+  //   places: "1",
+  // },
   {
     id: "u2",
     name: "Henry Hanover-Stuart-Fox",
@@ -10,7 +16,6 @@ const USERS = [
     places: "3",
   },
 ];
-//https://i.ibb.co/HT4MXF8/alex.png
 
 const User = () => {
   return <UserList items={USERS} />;
