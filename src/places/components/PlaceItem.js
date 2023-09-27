@@ -2,12 +2,16 @@ import React, { useState, useContext } from "react";
 import "./PlaceItem.css";
 
 import { AuthContext } from "../../shared/components/context/auth-context";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 const PlaceItem = (props) => {
   const auth = useContext(AuthContext);
+  const { isLoading, sendRequest, error, clearError } = useHttpClient();
 
   const [showMap, setShowMap] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -17,10 +21,23 @@ const PlaceItem = (props) => {
 
   const showDeleteWarningHandler = () => setShowConfirmModal(true);
   const cancelDeleteHandler = () => setShowConfirmModal(false);
-  const confirmDelteHandler = () => setShowConfirmModal(false);
+  const confirmDeleteHandler = async () => {
+    setShowConfirmModal(false);
+
+    try {
+      await sendRequest(
+        `http://localhost:5000/api/places/${props.id}`,
+        "DELETE"
+      );
+
+      props.onDelete(props.id);
+      window.location.reload();
+    } catch (err) {}
+  };
 
   return (
     <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
       <Modal
         show={showMap}
         onCancel={closeMapHandler}
@@ -43,7 +60,7 @@ const PlaceItem = (props) => {
             <Button inverse onClick={cancelDeleteHandler}>
               CANCEL
             </Button>
-            <Button danger onClick={confirmDelteHandler}>
+            <Button danger onClick={confirmDeleteHandler}>
               DELETE
             </Button>
           </React.Fragment>
@@ -51,6 +68,7 @@ const PlaceItem = (props) => {
       ></Modal>
       <li className="place-item">
         <Card className="place-item__content">
+          {isLoading && <LoadingSpinner asOverlay />}
           <div className="place-item__image">
             <img src={props.image} alt={props.title} />
           </div>
@@ -63,10 +81,10 @@ const PlaceItem = (props) => {
             <Button inverse onClick={openMapHandler}>
               VIEW ON MAP
             </Button>
-            {auth.isLoggedIn && (
+            {auth.useId === props.creatorId && (
               <Button to={`/places/${props.id}`}>EDIT</Button>
             )}
-            {auth.isLoggedIn && (
+            {auth.useId === props.creatorId && (
               <Button danger onClick={showDeleteWarningHandler}>
                 DELETE
               </Button>
